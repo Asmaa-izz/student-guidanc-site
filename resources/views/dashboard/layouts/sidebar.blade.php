@@ -22,8 +22,8 @@
                         <span>المدرسون</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('teachers.index') }}">جميع المدرسون</a></li>
-                        <li><a href="{{ route('teachers.create') }}">اضافة طالب مدرس</a></li>
+                        <li><a href="{{ route('teachers.index') }}">جميع المدرسين</a></li>
+                        <li><a href="{{ route('teachers.create') }}">إضافة مدرس جديد</a></li>
                     </ul>
                 </li>
 

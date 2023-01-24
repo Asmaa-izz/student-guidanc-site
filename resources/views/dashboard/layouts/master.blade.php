@@ -13,7 +13,7 @@
 
     @include('dashboard.layouts.head')
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    
+
 </head>
 
 @section('body')

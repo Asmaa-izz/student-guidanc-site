@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\StudentsController;
+use App\Http\Controllers\TeachersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,9 +21,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::view('/admin', 'dashboard.index')->name('dashboard');
 
-Route::resource('students', \App\Http\Controllers\StudentsController::class);
-Route::resource('teachers', \App\Http\Controllers\TeachersController::class);
+Route::middleware('auth:web')->prefix('dashboard')->group(function () {
+    Route::view('/', 'dashboard.index')->name('dashboard');
+    Route::resource('/students', StudentsController::class);
+    Route::resource('/teachers', TeachersController::class);
+});

@@ -7,13 +7,11 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up()
     {
-        Schema::create('students', function (Blueprint $table) {
+        Schema::create('student_information', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('guardian_id')->constrained('guardians');
-            $table->string('name');
-            $table->string('class');
-            $table->string('nationality')->nullable();
-            $table->date('birth')->nullable();
+            $table->foreignId('student_id')->constrained('students');
+            $table->foreignId('teacher_id')->constrained('users');
+            $table->foreignId('mentor_id')->constrained('users');
             $table->text('notes')->nullable();
             $table->timestamps();
         });
@@ -21,6 +19,6 @@ return new class extends Migration {
 
     public function down()
     {
-        Schema::dropIfExists('students');
+        Schema::dropIfExists('student_information');
     }
 };

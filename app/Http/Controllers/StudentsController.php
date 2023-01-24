@@ -8,11 +8,28 @@ use Illuminate\Http\Request;
 
 class StudentsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('dashboard.students.index', [
-            'students' => User::all(),
-        ]);
+        if ($request->ajax()) {
+            $search = $request->get('s');
+
+            $students = User::when($search, function ($query7, $search) {
+                    $query7->where(function ($q) use ($search) {
+                        $q->where('name', 'LIKE', '%'.$search.'%');
+                    });
+                })->get();
+
+            return \Yajra\DataTables\DataTables::of($students)
+                ->addColumn(
+                    'action',
+                    function (User $user) {
+                        return 'delet';
+                    })
+                ->rawColumns(['action'])->make(true);
+        } else {
+            return view('dashboard.students.index');
+        }
+
     }
 
     public function create()
