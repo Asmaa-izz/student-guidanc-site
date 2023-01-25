@@ -11,6 +11,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('student_id')->constrained('students');
             $table->string('status');
+
             $table->string('status_source');
             $table->foreignId('source_id')->constrained('users');
 

@@ -44,4 +44,5 @@ Route::middleware('auth:web')->prefix('dashboard')->group(function () {
     Route::get('/record-follow-up', [FollowUpRecordsController::class, 'index'])->name('record-follow-up.index');
     Route::get('/students/{student}/record-follow-up/create', [FollowUpRecordsController::class, 'create'])->name('record-follow-up.create');
     Route::post('/students/{student}/record-follow-up', [FollowUpRecordsController::class, 'store'])->name('record-follow-up.store');
+    Route::get('/students/{student}/record-follow-up/{followUpRecord}', [FollowUpRecordsController::class, 'show'])->name('record-follow-up.show');
 });

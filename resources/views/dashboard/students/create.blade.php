@@ -131,7 +131,7 @@
                         <div class="row">
                             <div class="form-group col-md-12">
                                 <label for="notes">ملاحظات:</label>
-                                <textarea class="form-control" id="notes" rows="2"></textarea>
+                                <textarea class="form-control" id="notes" name="notes" rows="2"></textarea>
                                 @error('notes')
                                 <small class="text-danger">{{ $message }}</small>
                                 @enderror

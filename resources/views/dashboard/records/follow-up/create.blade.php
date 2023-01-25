@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.master')
 
-@section('title', "اضافة زيارة أولياء أمور")
+@section('title', "اضافة سجل متابعة المواقف اليومية")
 
 @section('content')
 
@@ -9,10 +9,10 @@
         @slot('li_1_link', "/dashboard")
         @slot('li_2', "جميع الطلاب")
         @slot('li_2_link', "/dashboard/students")
-        @slot('page_now', "اضافة زيارة أولياء أمور")
+        @slot('page_now', "اضافة سجل متابعة المواقف اليومية")
     @endcomponent
 
-    <form action="{{ route('record-visits.store', $student->id) }}" method="POST">
+    <form action="{{ route('record-follow-up.store', $student->id) }}" method="POST">
         @csrf
         <div class="row">
             <div class="col-12">
@@ -24,7 +24,7 @@
                         @endif
 
                         <div class="card-title d-flex justify-content-between align-items-center my-3">
-                            <h4>اضافة زيارة أولياء أمور لطالب
+                            <h4>اضافة سجل متابعة المواقف اليومية الطارئ
                                 <strong>{{ $student->name }}</strong>
                                 صاحب رقم
                                 <strong>{{ $student->number }}</strong>
@@ -33,11 +33,24 @@
 
                         <div class="row">
                             <div class="form-group col-md-12">
-                                <label for="name" class="control-label required">اسم ولي الأمر:</label>
-                                <input type="text" class="form-control" name="name" id="name"
-                                       placeholder="أدخل اسم ولي الأمر"
-                                       value="{{ $student->guardian->name }}" required>
-                                @error('name')
+                                <label for="status" class="control-label required">الحالة:</label>
+                                <select class="select2 form-control" required
+                                        data-placeholder="اختر " name="status">
+                                        <option value="نفسية" selected>نفسية</option>
+                                        <option value="تربوية">تربوية</option>
+                                        <option value="صحية">صحية</option>
+                                        <option value="سلوكية">سلوكية</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label for="class" class="control-label required">الصف:</label>
+                                <input type="text" class="form-control" name="class" id="class"
+                                       placeholder="أدخل الصف"
+                                       value="{{ $student->class }}" required>
+                                @error('class')
                                 <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
@@ -45,11 +58,10 @@
 
                         <div class="row">
                             <div class="form-group col-md-12">
-                                <label for="attribute" class="control-label required">صفة ولي الأمر:</label>
-                                <input type="text" class="form-control" name="attribute" id="attribute"
-                                       placeholder="أدخل صفة ولي الأمر"
-                                       value="{{ $student->guardian->attribute }}" required>
-                                @error('attribute')
+                                <label for="description_situation">وصف الموقف:</label>
+                                <textarea class="form-control" id="description_situation" rows="2"
+                                          name="description_situation"></textarea>
+                                @error('notes')
                                 <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
@@ -57,20 +69,9 @@
 
                         <div class="row">
                             <div class="form-group col-md-12">
-                                <label for="phone" class="control-label required">الهاتف:</label>
-                                <input type="text" class="form-control" name="phone" id="phone"
-                                       placeholder="أدخل الهاتف"
-                                       value="{{ $student->guardian->phone }}" required>
-                                @error('phone')
-                                <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group col-md-12">
-                                <label for="notes">ملاحظات:</label>
-                                <textarea class="form-control" id="notes" name="notes" rows="2"></textarea>
+                                <label for="handle_situation">معالجة الموقف:</label>
+                                <textarea class="form-control" id="handle_situation" rows="2"
+                                          name="handle_situation"></textarea>
                                 @error('notes')
                                 <small class="text-danger">{{ $message }}</small>
                                 @enderror
