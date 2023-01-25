@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MentorsController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\TeachersController;
 use Illuminate\Support\Facades\Route;
@@ -24,7 +26,8 @@ Auth::routes();
 
 
 Route::middleware('auth:web')->prefix('dashboard')->group(function () {
-    Route::view('/', 'dashboard.index')->name('dashboard');
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/students', StudentsController::class);
     Route::resource('/teachers', TeachersController::class);
+    Route::resource('/mentors', MentorsController::class);
 });

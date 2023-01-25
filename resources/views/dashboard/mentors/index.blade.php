@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.master')
 
-@section('title', "جميع الطلاب")
+@section('title', "جميع المرشدين")
 
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/libs/datatables/datatables.min.css')}}">
@@ -12,36 +12,36 @@
     @component('dashboard.commonComponents.breadcrumb')
         @slot('li_1', "الرئيسية")
         @slot('li_1_link', "/dashboard")
-            @slot('page_now', "جميع الطلاب")
-                @endcomponent
+        @slot('page_now', "جميع المرشدين")
+    @endcomponent
 
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body p-3">
-                                <div class="card-title d-flex justify-content-between align-items-center my-3">
-                                    <h4>جميع الطلاب</h4>
-                                    <a href="{{ route('students.create') }}" class="btn btn-primary">إضافة طالب جديد</a>
-                                </div>
-
-                                <table id="students" class="table table-striped table-bordered dt-responsive nowrap"
-                                       style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                    <thead>
-                                    <tr>
-                                        <th>الاسم</th>
-                                        <th>العمليات</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body p-3">
+                    <div class="card-title d-flex justify-content-between align-items-center my-3">
+                        <h4>جميع المرشدين</h4>
+                        <a href="{{ route('mentors.create') }}" class="btn btn-primary">إضافة مرشد جديد</a>
                     </div>
+
+                    <table id="students" class="table table-striped table-bordered dt-responsive nowrap"
+                           style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                        <thead>
+                        <tr>
+                            <th>الاسم</th>
+                            <th>العمليات</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
                 </div>
+            </div>
+        </div>
+    </div>
 
 
-                @endsection
+@endsection
 
 @section('script')
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
@@ -53,7 +53,7 @@
             $('#students').DataTable({
                 // processing: true,
                 serverSide: true,
-                ajax: "{{ route('students.index') }}",
+                ajax: "{{ route('mentors.index') }}",
                 columns: [
                     {"data": "name"},
                     {"data": "action"},
@@ -76,7 +76,7 @@
                 if (result.isConfirmed) {
                     $("div.spanner").addClass("show");
                     $("div.overlay").addClass("show");
-                    fetch(`/dashboard/students/${id}`, {
+                    fetch(`/dashboard/mentors/${id}`, {
                         headers: {
                             "Content-Type": "application/json",
                             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")

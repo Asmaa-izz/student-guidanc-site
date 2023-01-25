@@ -11,9 +11,10 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('guardian_id')->constrained('guardians');
             $table->string('name');
+            $table->string('number');
             $table->string('class');
             $table->string('nationality')->nullable();
-            $table->date('birth')->nullable();
+            $table->integer('age')->nullable();
             $table->text('notes')->nullable();
             $table->timestamps();
         });

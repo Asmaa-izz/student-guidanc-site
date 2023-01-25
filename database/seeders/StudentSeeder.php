@@ -21,6 +21,7 @@ class StudentSeeder extends Seeder
         $s = Student::firstOrCreate(['guardian_id' => $g->id, 'name' => 'mohamed'], [
             'guardian_id' => $g->id,
             'name' => 'mohamed',
+            'number' => '123456',
             'class' => 'kg0',
             'nationality' => 'Palestinian',
         ]);

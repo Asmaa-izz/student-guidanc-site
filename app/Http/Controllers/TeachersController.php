@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\StudentInformation;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -10,6 +11,8 @@ class TeachersController extends Controller
 {
     public function index(Request $request)
     {
+        $this->authorize('access_teacher');
+
         if ($request->ajax()) {
             $search = $request->get('s');
 
@@ -44,11 +47,13 @@ class TeachersController extends Controller
 
     public function create()
     {
+        $this->authorize('create_teacher');
         return view('dashboard.teachers.create');
     }
 
     public function store(Request $request)
     {
+        $this->authorize('create_teacher');
         $request->validate([
             'name' => 'required',
             'email' => 'required|unique:users',
@@ -68,13 +73,18 @@ class TeachersController extends Controller
 
     public function show(User $teacher)
     {
+        $studentInformation = StudentInformation::where('teacher_id', '=', $teacher->id)->count();
+
+        $this->authorize('access_teacher');
         return view('dashboard.teachers.show', [
-            'teacher' => $teacher
+            'teacher' => $teacher,
+            'teacherـstudent_count' => $studentInformation
         ]);
     }
 
     public function edit(User $teacher)
     {
+        $this->authorize('update_teacher');
         return view('dashboard.teachers.edit', [
             'teacher' => $teacher
         ]);
@@ -82,6 +92,7 @@ class TeachersController extends Controller
 
     public function update(Request $request, User $teacher)
     {
+        $this->authorize('update_teacher');
         $request->validate([
             'name' => 'required',
         ]);
@@ -98,6 +109,7 @@ class TeachersController extends Controller
 
     public function destroy(User $teacher)
     {
+        $this->authorize('delete_teacher');
         $teacher->delete();
 
         return redirect()->route('teachers.index');

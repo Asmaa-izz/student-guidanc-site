@@ -16,6 +16,7 @@
                     </a>
                 </li>
 
+                @can('access_teacher')
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="bx bxs-user-detail"></i>
@@ -26,30 +27,45 @@
                         <li><a href="{{ route('teachers.create') }}">إضافة مدرس جديد</a></li>
                     </ul>
                 </li>
+                @endcan
 
+                @can('access_mentor')
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="bx bxs-user-detail"></i>
+                        <span>المرشدون</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('mentors.index') }}">جميع المرشدين</a></li>
+                        <li><a href="{{ route('mentors.create') }}">إضافة مرشد جديد</a></li>
+                    </ul>
+                </li>
+                @endcan
 
+                @can('access_student')
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="bx bxs-user-detail"></i>
                         <span>الطلاب</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('students.create') }}">جميع الطلاب</a></li>
+                        <li><a href="{{ route('students.index') }}">جميع الطلاب</a></li>
                         <li><a href="{{ route('students.create') }}">اضافة طالب جديد</a></li>
                     </ul>
                 </li>
+                @endcan
 
-
-
-{{--                <li>--}}
-{{--                    <a href="javascript: void(0);" class="has-arrow waves-effect">--}}
-{{--                        <i class="bx bxs-cog"></i>--}}
-{{--                        <span>الإعدادات</span>--}}
-{{--                    </a>--}}
-{{--                    <ul class="sub-menu" aria-expanded="false">--}}
-{{--                        <li><a href="/dashboard/roles">الصلاحيات</a></li>--}}
-{{--                    </ul>--}}
-{{--                </li>--}}
+                @can('setting')
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow waves-effect">
+                            <i class="bx bxs-user-detail"></i>
+                            <span>الاعدادات</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="#">الاعدادات</a></li>
+                        </ul>
+                    </li>
+                @endcan
 
             </ul>
         </div>

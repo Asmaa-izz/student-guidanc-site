@@ -10,4 +10,8 @@ class Student extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    public function guardian() {
+        return $this->belongsTo(Guardian::class);
+    }
 }

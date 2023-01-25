@@ -29,7 +29,7 @@
 
                         <div class="row">
                             <div class="form-group col-md-12">
-                                <label for="name">اسم المدرس:</label>
+                                <label for="name" class="control-label required">اسم المدرس:</label>
                                 <input type="text" class="form-control" name="name" id="name" placeholder="أدخل الاسم"
                                        value="{{old('name')}}" required>
                                 @error('name')
@@ -40,7 +40,7 @@
 
                         <div class="row">
                             <div class="form-group col-md-12">
-                                <label for="email">البريد الإلكتروني:</label>
+                                <label for="email" class="control-label required">البريد الإلكتروني:</label>
                                 <input type="email" class="form-control" name="email" id="email"
                                        placeholder="أدخل البريد الإلكتروني"
                                        value="{{old('email')}}" required>
@@ -52,7 +52,7 @@
 
                         <div class="row">
                             <div class="form-group col-md-12">
-                                <label for="password"> كلمة المرور:</label>
+                                <label for="password" class="control-label required"> كلمة المرور:</label>
                                 <input type="password" class="form-control" name="password" id="password"
                                        placeholder="أدخل كلمة المرور"
                                        value="{{old('password')}}" required>

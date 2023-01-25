@@ -10,3 +10,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;700&display=swap" rel="stylesheet">
 
 @yield('css')
+
+<style>
+    .required.control-label:after {
+        content:"*";
+        color:red;
+    }
+</style>
