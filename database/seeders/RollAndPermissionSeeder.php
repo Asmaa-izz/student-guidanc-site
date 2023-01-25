@@ -21,6 +21,7 @@ class RollAndPermissionSeeder extends Seeder
         $mentorsRole = Role::firstOrCreate(['name' => 'mentor']);
 
         Permission::firstOrCreate(['name' => 'setting']);
+        Permission::firstOrCreate(['name' => 'access_record']);
 
         Permission::firstOrCreate(['name' => 'access_teacher']);
         Permission::firstOrCreate(['name' => 'create_teacher']);

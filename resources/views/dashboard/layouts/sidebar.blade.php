@@ -55,6 +55,20 @@
                 </li>
                 @endcan
 
+                @can('access_record')
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow waves-effect">
+                            <i class="bx bxs-user-detail"></i>
+                            <span>السجلات</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="{{ route('record.index') }}">سجل الطالب</a></li>
+                            <li><a href="{{ route('record-visits.index') }}">سجل زيارات اولياء الامور</a></li>
+                            <li><a href="{{ route('record-follow-up.index') }}">سجل متابعة المواقف اليومية</a></li>
+                        </ul>
+                    </li>
+                @endcan
+
                 @can('setting')
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">

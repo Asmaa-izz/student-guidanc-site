@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.master')
 
-@section('title', "جميع الطلاب")
+@section('title', 'سجل زيارات اولياء الامور')
 
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/libs/datatables/datatables.min.css')}}">
@@ -12,7 +12,7 @@
     @component('dashboard.commonComponents.breadcrumb')
         @slot('li_1', "الرئيسية")
         @slot('li_1_link', "/dashboard")
-        @slot('page_now', "جميع الطلاب")
+        @slot('page_now', 'سجل زيارات اولياء الامور')
     @endcomponent
 
     <div class="row">
@@ -20,8 +20,7 @@
             <div class="card">
                 <div class="card-body p-3">
                     <div class="card-title d-flex justify-content-between align-items-center my-3">
-                        <h4>جميع الطلاب</h4>
-                        <a href="{{ route('students.create') }}" class="btn btn-primary">إضافة طالب جديد</a>
+                        <h4>سجل زيارات اولياء الامور</h4>
                     </div>
 
                     <table id="students" class="table table-striped table-bordered dt-responsive nowrap"
@@ -30,8 +29,8 @@
                         <tr>
                             <th>رقم الطالب</th>
                             <th>اسم الطالب</th>
-                            <th>السجل</th>
-                            <th>العمليات</th>
+                            <th>التاريخ</th>
+                            <th>التفاصيل</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -41,6 +40,7 @@
             </div>
         </div>
     </div>
+
 
 @endsection
 
@@ -54,12 +54,12 @@
             $('#students').DataTable({
                 // processing: true,
                 serverSide: true,
-                ajax: "{{ route('students.index') }}",
+                ajax: "{{ route('record-visits.index') }}",
                 columns: [
                     {"data": "number"},
                     {"data": "name"},
-                    {"data": "record"},
-                    {"data": "action"},
+                    {"data": "created_at"},
+                    {"data": "details"},
                 ],
             });
         });

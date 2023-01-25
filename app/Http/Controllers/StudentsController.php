@@ -30,6 +30,14 @@ class StudentsController extends Controller
                         return '<a href="/dashboard/students/' . $student->id . '" class="btn btn-link">' . $student->name . '</a>';
                     })
                 ->addColumn(
+                    'record',
+                    function (Student $student) {
+                        return '<a href="/dashboard/students/' . $student->id . '/record-visits/create" class="btn btn-outline-primary">اضافة زيارة أولياء أمور</a>
+                                <a href="/dashboard/students/' . $student->id . '/record-follow-up/create" class="btn btn-outline-primary">اضافة متابعة المواقف اليومية</a>
+                                <a href="/dashboard/students/' . $student->id . '/record-visits/create" class="btn btn-outline-primary">اضافة جلسة ارشاد</a>
+                                ';
+                    })
+                ->addColumn(
                     'action',
                     function (Student $student) {
                         return '<a href="/dashboard/students/' . $student->id . '/edit" class="btn btn-primary">تعديل </a>
@@ -37,7 +45,7 @@ class StudentsController extends Controller
                                 حذف
                                 </button>';
                     })
-                ->rawColumns(['name', 'action'])->make(true);
+                ->rawColumns(['number', 'name', 'record', 'action'])->make(true);
         } else {
             return view('dashboard.students.index');
         }
