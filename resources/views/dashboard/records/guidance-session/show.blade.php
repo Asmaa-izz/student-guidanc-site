@@ -1,15 +1,15 @@
 @extends('dashboard.layouts.master')
 
-@section('title', "سجل زيارة لطالب ". $student->name))
+@section('title', " جلسة ارشادية لطالب  ". $student->name)
 
 @section('content')
 
     @component('dashboard.commonComponents.breadcrumb')
         @slot('li_1', "الرئيسية")
         @slot('li_1_link', "/dashboard")
-        @slot('li_2', "سجل زيارات اولياء الامور")
-        @slot('li_2_link', "/dashboard/record-visits")
-        @slot('page_now',  "سجل زيارة لطالب ". $student->name)
+        @slot('li_2', "جلسات ارشادية للطلاب")
+        @slot('li_2_link', "/dashboard/guidance-sessions")
+        @slot('page_now',  " جلسة ارشادية لطالب ". $student->name)
     @endcomponent
 
         <div class="row">
@@ -30,19 +30,25 @@
                             <div class="col-md-12">
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item">
-                                        <strong>اسم ولي الأمر :</strong> <span>{{ $record->guardian_name }}</span>
+                                        <strong>الصف :</strong> <span>{{ $student->class }}</span>
                                     </li>
                                     <li class="list-group-item">
-                                        <strong>رقم هاتف ولي الأمر :</strong> <span>{{ $record->phone }}</span>
+                                        <strong>نوع الحالة :</strong> <span>{{ $record->status }}</span>
                                     </li>
                                     <li class="list-group-item">
-                                        <strong>صفة ولي الأمر :</strong> <span>{{ $record->guardian_attribute }}</span>
+                                        <strong>مصدر الحالة :</strong> <span>{{ $record->status_source }}</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong>اسم مصدر الحالة :</strong> <span>{{ $record->user->name }}</span>
                                     </li>
                                     <li class="list-group-item">
                                         <strong>التاريخ :</strong> <span>{{ \Carbon\Carbon::parse($record->created_at)->format('d/m/Y') }}</span>
                                     </li>
                                     <li class="list-group-item">
-                                        <strong>ملاحظات :</strong> <span>{{ $record->notes }}</span>
+                                        <strong>وصف الموقف :</strong> <span>{{ $record->description_situation }}</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong>معالجة الموقف :</strong> <span>{{ $record->handle_situation }}</span>
                                     </li>
                                 </ul>
                             </div>

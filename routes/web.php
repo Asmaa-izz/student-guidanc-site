@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FollowUpRecordsController;
+use App\Http\Controllers\GuidanceSessionsController;
 use App\Http\Controllers\MentorsController;
 use App\Http\Controllers\RecordController;
 use App\Http\Controllers\StudentsController;
@@ -45,4 +46,9 @@ Route::middleware('auth:web')->prefix('dashboard')->group(function () {
     Route::get('/students/{student}/record-follow-up/create', [FollowUpRecordsController::class, 'create'])->name('record-follow-up.create');
     Route::post('/students/{student}/record-follow-up', [FollowUpRecordsController::class, 'store'])->name('record-follow-up.store');
     Route::get('/students/{student}/record-follow-up/{followUpRecord}', [FollowUpRecordsController::class, 'show'])->name('record-follow-up.show');
+
+    Route::get('/guidance-sessions', [GuidanceSessionsController::class, 'index'])->name('guidance-sessions.index');
+    Route::get('/students/{student}/guidance-sessions/create', [GuidanceSessionsController::class, 'create'])->name('guidance-sessions.create');
+    Route::post('/students/{student}/guidance-sessions', [GuidanceSessionsController::class, 'store'])->name('guidance-sessions.store');
+    Route::get('/students/{student}/guidance-sessions/{guidanceSession}', [GuidanceSessionsController::class, 'show'])->name('guidance-sessions.show');
 });

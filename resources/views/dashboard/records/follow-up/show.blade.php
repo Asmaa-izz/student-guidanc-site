@@ -8,7 +8,7 @@
         @slot('li_1', "الرئيسية")
         @slot('li_1_link', "/dashboard")
         @slot('li_2', "سجلات متابعة المواقف اليومية")
-        @slot('li_2_link', "/dashboard/students")
+        @slot('li_2_link', "/dashboard/record-follow-up")
         @slot('page_now',  " سجل متابعة المواقف اليومية لطالب ". $student->name)
     @endcomponent
 
@@ -18,7 +18,7 @@
                     <div class="card-body">
 
                         <div class="card-title d-flex justify-content-between align-items-center my-3">
-                            <h4>سجل زيارة أولياء أمور لطالب
+                            <h4>سجلات متابعة المواقف اليومية
                                 <strong>{{ $student->name }}</strong>
                                 صاحب رقم
                                 <strong>{{ $student->number }}</strong>

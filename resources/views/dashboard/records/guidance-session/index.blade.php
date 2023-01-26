@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.master')
 
-@section('title', 'سجلات متابعة المواقف اليومية')
+@section('title', 'جلسات ارشادية للطلاب')
 
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/libs/datatables/datatables.min.css')}}">
@@ -12,7 +12,7 @@
     @component('dashboard.commonComponents.breadcrumb')
         @slot('li_1', "الرئيسية")
         @slot('li_1_link', "/dashboard")
-        @slot('page_now', "سجلات متابعة المواقف اليومية")
+        @slot('page_now', "جلسات ارشادية للطلاب")
     @endcomponent
 
     <div class="row">
@@ -20,7 +20,7 @@
             <div class="card">
                 <div class="card-body p-3">
                     <div class="card-title d-flex justify-content-between align-items-center my-3">
-                        <h4>سجلات متابعة المواقف اليومية</h4>
+                        <h4>جلسات ارشادية للطلاب</h4>
                     </div>
 
                     <table id="students" class="table table-striped table-bordered dt-responsive nowrap"
