@@ -10,7 +10,8 @@ return new class extends Migration {
         Schema::create('guardians', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('phone');
+            $table->string('email')->unique();
+            $table->string('phone')->nullable();
             $table->string('attribute')->nullable();
             $table->timestamps();
         });

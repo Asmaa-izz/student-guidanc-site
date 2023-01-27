@@ -30,25 +30,16 @@
                             <div class="col-md-12">
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item">
-                                        <strong>الصف :</strong> <span>{{ $student->class }}</span>
+                                        <strong>النوع :</strong> <span>{{ $session->type }}</span>
                                     </li>
                                     <li class="list-group-item">
-                                        <strong>نوع الحالة :</strong> <span>{{ $record->status }}</span>
+                                        <strong>المكان :</strong> <span>{{ $session->place }}</span>
                                     </li>
                                     <li class="list-group-item">
-                                        <strong>مصدر الحالة :</strong> <span>{{ $record->status_source }}</span>
+                                        <strong>الوقت :</strong> <span>{{ \Carbon\Carbon::parse($session->time)->format('d/m/Y') }}</span>
                                     </li>
                                     <li class="list-group-item">
-                                        <strong>اسم مصدر الحالة :</strong> <span>{{ $record->user->name }}</span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <strong>التاريخ :</strong> <span>{{ \Carbon\Carbon::parse($record->created_at)->format('d/m/Y') }}</span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <strong>وصف الموقف :</strong> <span>{{ $record->description_situation }}</span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <strong>معالجة الموقف :</strong> <span>{{ $record->handle_situation }}</span>
+                                        <strong>الوصف :</strong> <span>{{ $session->description }}</span>
                                     </li>
                                 </ul>
                             </div>

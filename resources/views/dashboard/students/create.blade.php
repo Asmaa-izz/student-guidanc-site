@@ -48,35 +48,6 @@
 
                         <div class="row">
                             <div class="form-group col-md-4">
-                                <label for="guardian_name" class="control-label required">اسم ولي الأمر:</label>
-                                <input type="text" class="form-control" name="guardian_name" id="guardian_name" placeholder="أدخل اسم ولي الأمر"
-                                       value="{{old('guardian_name')}}" required>
-                                @error('guardian_name')
-                                <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
-
-                            <div class="form-group col-md-4">
-                                <label for="guardian_phone" class="control-label required">رقم هاتف ولي الأمر:</label>
-                                <input type="text" class="form-control" name="guardian_phone" id="guardian_phone" placeholder="أدخل رقم هاتف ولي الأمر"
-                                       value="{{old('guardian_phone')}}" required>
-                                @error('guardian_phone')
-                                <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
-
-                            <div class="form-group col-md-4">
-                                <label for="guardian_attribute"> صفة ولي الامر:</label>
-                                <input type="text" class="form-control" name="guardian_attribute" id="guardian_attribute" placeholder="أدخل  صفة ولي الامر"
-                                       value="{{old('guardian_attribute')}}">
-                                @error('guardian_attribute')
-                                <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group col-md-4">
                                 <label for="class" class="control-label required">الصف:</label>
                                 <input type="text" class="form-control" name="class" id="class" placeholder="أدخل الصف"
                                        value="{{old('class')}}" required>
@@ -107,6 +78,48 @@
                                 </select>
                             </div>
                         </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="guardian_name" class="control-label required">اسم ولي الأمر:</label>
+                                <input type="text" class="form-control" name="guardian_name" id="guardian_name" placeholder="أدخل اسم ولي الأمر"
+                                       value="{{old('guardian_name')}}" required>
+                                @error('guardian_name')
+                                <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="guardian_email" class="control-label required">البريد الالكتورني لولي الأمر:</label>
+                                <input type="email" class="form-control" name="guardian_email" id="guardian_email" placeholder="أدخل البريد الالكتروني لولي الأمر"
+                                       value="{{old('guardian_name')}}" required>
+                                @error('guardian_name')
+                                <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="guardian_phone" class="control-label">رقم هاتف ولي الأمر:</label>
+                                <input type="text" class="form-control" name="guardian_phone" id="guardian_phone" placeholder="أدخل رقم هاتف ولي الأمر"
+                                       value="{{old('guardian_phone')}}">
+                                @error('guardian_phone')
+                                <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="guardian_attribute"> صفة ولي الامر:</label>
+                                <input type="text" class="form-control" name="guardian_attribute" id="guardian_attribute" placeholder="أدخل  صفة ولي الامر"
+                                       value="{{old('guardian_attribute')}}">
+                                @error('guardian_attribute')
+                                <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                        </div>
+
+
 
                         <div class="row">
                             <div class="form-group col-md-6">

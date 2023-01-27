@@ -50,6 +50,9 @@
                                     <li class="list-group-item">
                                         <strong>معالجة الموقف :</strong> <span>{{ $record->handle_situation }}</span>
                                     </li>
+                                    <li class="list-group-item">
+                                        <strong>الرصد في نون :</strong> <span>{{ $record->show_in_noun ? 'نعم' : 'لا' }}</span>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

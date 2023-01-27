@@ -65,6 +65,7 @@
                             <li><a href="{{ route('record.index') }}">سجل الطالب</a></li>
                             <li><a href="{{ route('record-visits.index') }}">سجل زيارات اولياء الامور</a></li>
                             <li><a href="{{ route('record-follow-up.index') }}">سجل متابعة المواقف اليومية</a></li>
+                            <li><a href="{{ route('guidance-sessions.index') }}">جلسات ارشادية للطلاب</a></li>
                         </ul>
                     </li>
                 @endcan
@@ -76,7 +77,7 @@
                             <span>الاعدادات</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="#">الاعدادات</a></li>
+                            <li><a href="{{ route('settings.index') }}">الاعدادات</a></li>
                         </ul>
                     </li>
                 @endcan

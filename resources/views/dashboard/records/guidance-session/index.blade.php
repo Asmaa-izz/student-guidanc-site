@@ -29,7 +29,8 @@
                         <tr>
                             <th>رقم الطالب</th>
                             <th>اسم الطالب</th>
-                            <th>التاريخ</th>
+                            <th>النوع</th>
+                            <th>الوقت</th>
                             <th>التفاصيل</th>
                         </tr>
                         </thead>
@@ -53,11 +54,12 @@
             $('#students').DataTable({
                 // processing: true,
                 serverSide: true,
-                ajax: "{{ route('record-follow-up.index') }}",
+                ajax: "{{ route('guidance-sessions.index') }}",
                 columns: [
                     {"data": "number"},
                     {"data": "name"},
-                    {"data": "created_at"},
+                    {"data": "type"},
+                    {"data": "time"},
                     {"data": "details"},
                 ],
             });

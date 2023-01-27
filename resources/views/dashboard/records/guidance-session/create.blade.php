@@ -12,7 +12,7 @@
         @slot('page_now', "اضافة جلسة ارشادية")
     @endcomponent
 
-    <form action="{{ route('record-follow-up.store', $student->id) }}" method="POST">
+    <form action="{{ route('guidance-sessions.store', $student->id) }}" method="POST">
         @csrf
         <div class="row">
             <div class="col-12">
@@ -33,24 +33,22 @@
 
                         <div class="row">
                             <div class="form-group col-md-12">
-                                <label for="status" class="control-label required">الحالة:</label>
-                                <select class="select2 form-control" required
-                                        data-placeholder="اختر " name="status">
-                                        <option value="نفسية" selected>نفسية</option>
-                                        <option value="تربوية">تربوية</option>
-                                        <option value="صحية">صحية</option>
-                                        <option value="سلوكية">سلوكية</option>
+                                <label for="type" class="control-label required">النوع:</label>
+                                <select class="select2 form-control" required id="type"
+                                        data-placeholder="اختر " name="type">
+                                    <option value="تأخر دراسي" selected>تأخر دراسي</option>
+                                    <option value="سلوك عدواني">سلوك عدواني</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="form-group col-md-12">
-                                <label for="class" class="control-label required">الصف:</label>
-                                <input type="text" class="form-control" name="class" id="class"
-                                       placeholder="أدخل الصف"
-                                       value="{{ $student->class }}" required>
-                                @error('class')
+                                <label for="place" class="control-label">المكان:</label>
+                                <input type="text" class="form-control" name="place" id="place"
+                                       placeholder="أدخل المكان"
+                                       value="{{old('place')}}">
+                                @error('place')
                                 <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
@@ -58,10 +56,11 @@
 
                         <div class="row">
                             <div class="form-group col-md-12">
-                                <label for="description_situation">وصف الموقف:</label>
-                                <textarea class="form-control" id="description_situation" rows="2"
-                                          name="description_situation"></textarea>
-                                @error('notes')
+                                <label for="time" class="control-label">الوقت:</label>
+                                <input type="datetime-local" class="form-control" name="time" id="time"
+                                       placeholder="أدخل الوقت"
+                                       value="{{old('time')}}">
+                                @error('time')
                                 <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
@@ -69,15 +68,14 @@
 
                         <div class="row">
                             <div class="form-group col-md-12">
-                                <label for="handle_situation">معالجة الموقف:</label>
-                                <textarea class="form-control" id="handle_situation" rows="2"
-                                          name="handle_situation"></textarea>
-                                @error('notes')
+                                <label for="description">الوصف:</label>
+                                <textarea class="form-control" id="description" rows="2"
+                                          name="description"></textarea>
+                                @error('description')
                                 <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
                         </div>
-
 
                         <div class="row">
                             <div class="col-12">
@@ -93,3 +91,19 @@
     </form>
 
 @endsection
+
+
+@section('script')
+    <script>
+        function datetimeLocal() {
+            const dt = new Date();
+            dt.setMinutes(dt.getMinutes() - dt.getTimezoneOffset());
+            return dt.toISOString().slice(0, 16);
+        }
+
+        const time = document.getElementById('time');
+        time.value = datetimeLocal();
+    </script>
+
+@endsection
+

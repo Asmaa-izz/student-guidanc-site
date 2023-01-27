@@ -39,6 +39,7 @@
                     <i class="mdi mdi-chevron-down"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item text-primary" href="{{ route('profile') }}">الملف الشحصي</a>
                     <a class="dropdown-item text-danger" href="javascript:void();"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
                             class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> تسجيل الخروج

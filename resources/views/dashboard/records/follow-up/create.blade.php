@@ -36,10 +36,10 @@
                                 <label for="status" class="control-label required">الحالة:</label>
                                 <select class="select2 form-control" required
                                         data-placeholder="اختر " name="status">
-                                        <option value="نفسية" selected>نفسية</option>
-                                        <option value="تربوية">تربوية</option>
-                                        <option value="صحية">صحية</option>
-                                        <option value="سلوكية">سلوكية</option>
+                                    <option value="نفسية" selected>نفسية</option>
+                                    <option value="تربوية">تربوية</option>
+                                    <option value="صحية">صحية</option>
+                                    <option value="سلوكية">سلوكية</option>
                                 </select>
                             </div>
                         </div>
@@ -75,6 +75,16 @@
                                 @error('notes')
                                 <small class="text-danger">{{ $message }}</small>
                                 @enderror
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="show_in_noun"
+                                           name="show_in_noun">
+                                    <label class="form-check-label" for="show_in_noun">الرصد في نون:</label>
+                                </div>
                             </div>
                         </div>
 

@@ -17,6 +17,7 @@ return new class extends Migration {
 
             $table->text('description_situation')->nullable();
             $table->text('handle_situation')->nullable();
+            $table->boolean('show_in_noun')->nullable();
 
 
 

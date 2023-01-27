@@ -71,6 +71,7 @@ class FollowUpRecordsController extends Controller
         $followUpRecord->handle_situation = $request->handle_situation;
         $followUpRecord->status_source = 'المدير';
         $followUpRecord->source_id = Auth::id();
+        $followUpRecord->show_in_noun = $request->show_in_noun;
         $followUpRecord->save();
 
         return redirect()->route('record-follow-up.index');

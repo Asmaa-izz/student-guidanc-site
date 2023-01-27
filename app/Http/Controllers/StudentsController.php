@@ -34,7 +34,7 @@ class StudentsController extends Controller
                     function (Student $student) {
                         return '<a href="/dashboard/students/' . $student->id . '/record-visits/create" class="btn btn-outline-primary">اضافة زيارة أولياء أمور</a>
                                 <a href="/dashboard/students/' . $student->id . '/record-follow-up/create" class="btn btn-outline-primary">اضافة متابعة المواقف اليومية</a>
-                                <a href="/dashboard/students/' . $student->id . '/record-visits/create" class="btn btn-outline-primary">اضافة جلسة ارشاد</a>
+                                <a href="/dashboard/students/' . $student->id . '/guidance-sessions/create" class="btn btn-outline-primary">اضافة جلسة ارشاد</a>
                                 ';
                     })
                 ->addColumn(
@@ -72,7 +72,7 @@ class StudentsController extends Controller
         $request->validate([
             'name' => 'required',
             'number' => 'required',
-            'guardian_name' => 'required',
+            'guardian_email' => 'required',
             'guardian_phone' => 'required',
             'class' => 'required',
             'teacher' => 'required',
@@ -80,6 +80,7 @@ class StudentsController extends Controller
         ]);
 
         $guardian = new Guardian();
+        $guardian->email = $request->guardian_email;
         $guardian->name = $request->guardian_name;
         $guardian->phone = $request->guardian_phone;
         $guardian->attribute = $request->guardian_attribute;
