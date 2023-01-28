@@ -13,6 +13,8 @@ class GuidanceSessionsController extends Controller
 {
     public function index(Student $student, Request $request)
     {
+        $this->authorize('access_guidance_sessions');
+
         if ($request->ajax()) {
             $search = $request->get('s');
 
@@ -57,6 +59,8 @@ class GuidanceSessionsController extends Controller
 
     public function create(Student $student)
     {
+        $this->authorize('create_guidance_sessions');
+
         return view('dashboard.records.guidance-session.create', [
             'student' => $student
         ]);
@@ -64,6 +68,8 @@ class GuidanceSessionsController extends Controller
 
     public function store(Request $request, Student $student)
     {
+        $this->authorize('create_guidance_sessions');
+
         $guidanceSession = new GuidanceSession();
         $guidanceSession->student_id = $student->id;
         $guidanceSession->type = $request->type;
@@ -78,6 +84,8 @@ class GuidanceSessionsController extends Controller
 
     public function show(Student $student, GuidanceSession $guidanceSession)
     {
+        $this->authorize('access_guidance_sessions');
+
         return view('dashboard.records.guidance-session.show', [
             'session' => $guidanceSession,
             'student' => $student,

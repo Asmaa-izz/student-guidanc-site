@@ -45,7 +45,12 @@ class StudentsController extends Controller
                                 حذف
                                 </button>';
                     })
-                ->rawColumns(['number', 'name', 'record', 'action'])->make(true);
+                ->addColumn(
+                    'report',
+                    function (Student $student) {
+                        return '<a href="/dashboard/students/' . $student->id . '/report" class="btn btn-info">تقرير </a>';
+                    })
+                ->rawColumns(['number', 'name', 'record', 'action', 'report'])->make(true);
         } else {
             return view('dashboard.students.index');
         }

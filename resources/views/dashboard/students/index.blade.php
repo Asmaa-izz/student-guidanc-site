@@ -32,6 +32,7 @@
                             <th>اسم الطالب</th>
                             <th>السجل</th>
                             <th>العمليات</th>
+                            <th>تقرير</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -60,6 +61,7 @@
                     {"data": "name"},
                     {"data": "record"},
                     {"data": "action"},
+                    {"data": "report"},
                 ],
             });
         });

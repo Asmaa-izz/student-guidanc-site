@@ -13,6 +13,8 @@ class FollowUpRecordsController extends Controller
 {
     public function index(Student $student, Request $request)
     {
+        $this->authorize('access_follow_up_record');
+
         if ($request->ajax()) {
             $search = $request->get('s');
 
@@ -57,6 +59,8 @@ class FollowUpRecordsController extends Controller
 
     public function create(Student $student)
     {
+        $this->authorize('create_follow_up_record');
+
         return view('dashboard.records.follow-up.create', [
             'student' => $student
         ]);
@@ -64,6 +68,8 @@ class FollowUpRecordsController extends Controller
 
     public function store(Request $request, Student $student)
     {
+        $this->authorize('create_follow_up_record');
+
         $followUpRecord = new FollowUpRecord();
         $followUpRecord->student_id = $student->id;
         $followUpRecord->status = $request->status;
@@ -71,7 +77,7 @@ class FollowUpRecordsController extends Controller
         $followUpRecord->handle_situation = $request->handle_situation;
         $followUpRecord->status_source = 'المدير';
         $followUpRecord->source_id = Auth::id();
-        $followUpRecord->show_in_noun = $request->show_in_noun;
+        $followUpRecord->show_in_noun = $request->has('show_in_noun');
         $followUpRecord->save();
 
         return redirect()->route('record-follow-up.index');
@@ -79,6 +85,8 @@ class FollowUpRecordsController extends Controller
 
     public function show(Student $student, FollowUpRecord $followUpRecord)
     {
+        $this->authorize('access_follow_up_record');
+
         return view('dashboard.records.follow-up.show', [
             'record' => $followUpRecord,
             'student' => $student,

@@ -11,7 +11,7 @@ class VisitsRecordsController extends Controller
 {
     public function index(Request $request)
     {
-        $this->authorize('access_record');
+        $this->authorize('access_visits_record');
 
         if ($request->ajax()) {
             $search = $request->get('s');
@@ -54,6 +54,8 @@ class VisitsRecordsController extends Controller
 
     public function create(Student $student)
     {
+        $this->authorize('create_visits_record');
+
         return view('dashboard.records.visits.create', [
             'student' => $student->load('guardian')
         ]);
@@ -61,6 +63,8 @@ class VisitsRecordsController extends Controller
 
     public function store(Request $request, Student $student)
     {
+        $this->authorize('create_visits_record');
+
         $visitsRecord = new VisitsRecord();
         $visitsRecord->student_id = $student->id;
         $visitsRecord->guardian_name = $request->name;
@@ -74,6 +78,8 @@ class VisitsRecordsController extends Controller
 
     public function show(Student $student, VisitsRecord $visitsRecord)
     {
+        $this->authorize('access_visits_record');
+
         return view('dashboard.records.visits.show', [
             'record' => $visitsRecord,
             'student' => $student,

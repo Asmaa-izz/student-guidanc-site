@@ -21,6 +21,7 @@ class RollAndPermissionSeeder extends Seeder
         $mentorsRole = Role::firstOrCreate(['name' => 'mentor']);
 
         Permission::firstOrCreate(['name' => 'setting']);
+        Permission::firstOrCreate(['name' => 'roles']);
         Permission::firstOrCreate(['name' => 'access_record']);
 
         Permission::firstOrCreate(['name' => 'access_teacher']);
@@ -38,6 +39,16 @@ class RollAndPermissionSeeder extends Seeder
         Permission::firstOrCreate(['name' => 'update_student']);
         Permission::firstOrCreate(['name' => 'delete_student']);
 
+        Permission::firstOrCreate(['name' => 'access_visits_record']);
+        Permission::firstOrCreate(['name' => 'create_visits_record']);
+
+        Permission::firstOrCreate(['name' => 'access_follow_up_record']);
+        Permission::firstOrCreate(['name' => 'create_follow_up_record']);
+
+        Permission::firstOrCreate(['name' => 'access_guidance_sessions']);
+        Permission::firstOrCreate(['name' => 'create_guidance_sessions']);
+
+
 
         $adminPermissions = Permission::all()->pluck('name')->toArray();
         $adminRole->syncPermissions($adminPermissions);
@@ -45,6 +56,18 @@ class RollAndPermissionSeeder extends Seeder
 
         $teacherRole->syncPermissions([
             'access_student', 'create_student', 'update_student', 'delete_student',
+            'access_record',
+            'access_visits_record', 'create_visits_record',
+            'access_follow_up_record', 'create_follow_up_record',
+            'access_guidance_sessions', 'create_guidance_sessions',
+        ]);
+
+        $mentorsRole->syncPermissions([
+            'access_student', 'create_student', 'update_student', 'delete_student',
+            'access_record',
+            'access_visits_record', 'create_visits_record',
+            'access_follow_up_record', 'create_follow_up_record',
+            'access_guidance_sessions', 'create_guidance_sessions',
         ]);
 
     }

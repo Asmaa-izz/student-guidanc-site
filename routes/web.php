@@ -6,10 +6,13 @@ use App\Http\Controllers\GuidanceSessionsController;
 use App\Http\Controllers\MentorsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecordController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\RolesController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\TeachersController;
 use App\Http\Controllers\VisitsRecordsController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,9 +26,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [WelcomeController::class, 'index']);
 
 Auth::routes();
 
@@ -58,5 +59,11 @@ Route::middleware('auth:web')->prefix('dashboard')->group(function () {
     Route::get('/students/{student}/guidance-sessions/{guidanceSession}', [GuidanceSessionsController::class, 'show'])->name('guidance-sessions.show');
 
     Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
-    Route::post('/settings', [SettingController::class, 'edit'])->name('settings.update');
+    Route::post('/settings', [SettingController::class, 'store'])->name('settings.update');
+
+    Route::get('/roles', [RolesController::class, 'index'])->name('roles.index');
+    Route::post('/roles', [RolesController::class, 'edit'])->name('roles.update');
+
+
+    Route::get('/students/{student}/report', [ReportController::class, 'index'])->name('report');
 });

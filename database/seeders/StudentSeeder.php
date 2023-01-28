@@ -14,6 +14,7 @@ class StudentSeeder extends Seeder
     {
         $g = Guardian::firstOrCreate(['phone' =>'0591234567'], [
             'phone' =>'0591234567',
+            'email' =>'father@email.com',
             'name' => 'ahmad',
             'Attribute' => 'father',
         ]);
