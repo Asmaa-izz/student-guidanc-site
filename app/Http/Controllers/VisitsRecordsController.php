@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\VisitEvent;
+use App\Mail\FollowUpMail;
+use App\Mail\VisitMail;
 use App\Models\Student;
 use App\Models\VisitsRecord;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class VisitsRecordsController extends Controller
 {
@@ -72,6 +76,10 @@ class VisitsRecordsController extends Controller
         $visitsRecord->phone = $request->phone;
         $visitsRecord->notes = $request->notes;
         $visitsRecord->save();
+
+//        event(new VisitEvent($student, $visitsRecord));
+        $guardianEmail = $student->guardian->email;
+        Mail::to($guardianEmail)->send(new VisitMail($visitsRecord->load('student')));
 
         return redirect()->route('record-visits.index');
     }

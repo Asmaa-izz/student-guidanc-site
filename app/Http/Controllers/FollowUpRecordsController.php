@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\DemoEvent;
+use App\Events\FollowUpEvent;
+use App\Mail\FollowUpMail;
 use App\Models\FollowUpRecord;
 use App\Models\Student;
 use App\Models\VisitsRecord;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class FollowUpRecordsController extends Controller
 {
@@ -79,6 +83,10 @@ class FollowUpRecordsController extends Controller
         $followUpRecord->source_id = Auth::id();
         $followUpRecord->show_in_noun = $request->has('show_in_noun');
         $followUpRecord->save();
+
+//        event(new FollowUpEvent($student, $followUpRecord));
+        $guardianEmail = $student->guardian->email;
+        Mail::to($guardianEmail)->send(new FollowUpMail($followUpRecord->load('student')));
 
         return redirect()->route('record-follow-up.index');
     }

@@ -2,6 +2,12 @@
 
 namespace App\Providers;
 
+use App\Events\FollowUpEvent;
+use App\Events\SessionEvent;
+use App\Events\VisitEvent;
+use App\Listeners\SendEmailFollowUpListener;
+use App\Listeners\SendEmailSessionListener;
+use App\Listeners\SendEmailVisitListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -17,6 +23,15 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+        VisitEvent::class => [
+            SendEmailVisitListener::class,
+        ],
+        FollowUpEvent::class => [
+            SendEmailFollowUpListener::class,
+        ],
+        SessionEvent::class => [
+            SendEmailSessionListener::class,
         ],
     ];
 

@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\SessionEvent;
+use App\Mail\SessionsMail;
 use App\Models\FollowUpRecord;
 use App\Models\GuidanceSession;
 use App\Models\Student;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class GuidanceSessionsController extends Controller
 {
@@ -78,6 +81,10 @@ class GuidanceSessionsController extends Controller
         $guidanceSession->time = $request->time;
 
         $guidanceSession->save();
+
+//        event(new SessionEvent($student, $guidanceSession));
+        $guardianEmail = $student->guardian->email;
+        Mail::to($guardianEmail)->send(new SessionsMail($guidanceSession->load('student')));
 
         return redirect()->route('guidance-sessions.index');
     }
