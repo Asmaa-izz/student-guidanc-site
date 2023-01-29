@@ -17,9 +17,10 @@ class SessionsMail extends Mailable
     {
         $student = $this->data->student->name;
         return $this
-            ->subject( $student .'تقرير الطالب ')
+            ->subject($student . ' تقرير الطالب: ')
             ->view('emails.sessions', [
-            'session' => $this->data,
-        ]);
+                'session' => $this->data,
+                'title' => 'تقرير جلسة إرشادية'
+            ]);
     }
 }

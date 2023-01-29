@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FollowUpRecord;
 use App\Models\Guardian;
+use App\Models\GuidanceSession;
 use App\Models\Student;
 use App\Models\StudentInformation;
 use App\Models\User;
+use App\Models\VisitsRecord;
 use Illuminate\Http\Request;
 
 class StudentsController extends Controller
@@ -117,7 +120,12 @@ class StudentsController extends Controller
         return view('dashboard.students.show', [
             'student' => $student->load('guardian'),
             'teacher' => $studentInformation->teacher->name,
-            'mentor' => $studentInformation->mentor->name
+            'mentor' => $studentInformation->mentor->name,
+            'followUpRecord' => FollowUpRecord::where('student_id', '=', $student->id)->get(),
+            'visitsRecord' => VisitsRecord::where('student_id', '=', $student->id)->get(),
+            'guidanceSession_lag' => GuidanceSession::where('type', '=', "تأخر دراسي")->where('student_id', '=', $student->id)->get(),
+            'guidanceSession_behavior' => GuidanceSession::where('type', '=', "سلوك عدواني")->where('student_id', '=', $student->id)->get(),
+
         ]);
     }
 

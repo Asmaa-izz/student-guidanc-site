@@ -17,10 +17,11 @@ class VisitMail extends Mailable
     {
         $student = $this->data->student->name;
         return $this
-            ->subject( $student .'تقرير الطالب ')
+            ->subject($student . ' تقرير الطالب: ')
             ->view('emails.visit', [
                 'student' => $this->data->student,
                 'record' => $this->data,
-        ]);
+                'title' => 'تقرير زيارة ولي الأمر'
+            ]);
     }
 }

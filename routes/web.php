@@ -61,8 +61,7 @@ Route::middleware('auth:web')->prefix('dashboard')->group(function () {
     Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
     Route::post('/settings', [SettingController::class, 'store'])->name('settings.update');
 
-    Route::get('/roles', [RolesController::class, 'index'])->name('roles.index');
-    Route::post('/roles', [RolesController::class, 'edit'])->name('roles.update');
+    Route::resource('/roles', RolesController::class)->only(['index', 'store', 'update', 'destroy']);
 
 
     Route::get('/students/{student}/report', [ReportController::class, 'index'])->name('report');

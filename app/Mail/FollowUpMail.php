@@ -17,10 +17,11 @@ class FollowUpMail extends Mailable
     {
         $student = $this->data->student->name;
         return $this
-            ->subject( $student .'تقرير الطالب ')
+            ->subject($student . ' تقرير الطالب: ')
             ->view('emails.follow-up', [
-            'student' => $this->data->student,
-            'record' => $this->data,
-        ]);
+                'student' => $this->data->student,
+                'record' => $this->data,
+                'title' => 'تقرير جلسة متابعة مواقف'
+            ]);
     }
 }
