@@ -46,7 +46,7 @@
 
                                 @if ($role->id > 1)
                                     <div class="d-flex">
-                                        <form id="{{ $role->id }}" action="/dashboard/roles/{{ $role->id }}" method="POST"
+                                        <form id="delete-{{ $role->id }}" action="/dashboard/roles/{{ $role->id }}" method="POST"
                                               style="display:none;">
                                             @csrf
                                             @method('delete')
@@ -91,7 +91,7 @@
                                     <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">إغلاق
                                     </button>
                                     <button type="button" class="btn btn-danger waves-effect waves-light"
-                                            onclick="event.preventDefault(); document.getElementById('{{ $role->id }}').submit();">
+                                            onclick="event.preventDefault(); document.getElementById('delete-{{ $role->id }}').submit();">
                                         حذف
                                     </button>
                                 </div>
@@ -110,7 +110,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form id="form-edit-role" action="/dashboard/roles/{{$role->id}}" method="POST">
+                                    <form id="form-edit-role-{{$role->id}}" action="/dashboard/roles/{{$role->id}}" method="POST">
                                         @csrf
                                         @method('put')
                                         <div class="form-group">
@@ -140,7 +140,7 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
                                     <button type="button" class="btn btn-primary"
-                                            onclick="event.preventDefault(); document.getElementById('form-edit-role').submit();">
+                                            onclick="event.preventDefault(); document.getElementById('form-edit-role-{{$role->id}}').submit();">
                                         حفظ
                                     </button>
                                 </div>
@@ -177,8 +177,7 @@
                                     <li class="list-group-item">
                                         <div class="form-check">
                                             <input class="form-check-input" id="{{$ability->id}}" type="checkbox"
-                                                   name="ability[]" value="{{$ability->id}}"
-                                                {{ $ability->id < 3 ? "checked" : "" }}>
+                                                   name="ability[]" value="{{$ability->id}}">
                                             <label class="form-check-label" for="{{$ability->id}}">{{$ability->name}}</label>
                                         </div>
                                     </li>

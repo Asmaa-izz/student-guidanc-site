@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -28,9 +29,9 @@ class RolesController extends Controller
             'name' => $request->name,
         ]);
 
-        foreach ($request->ability as $value) {
-            $role->allowTo((int)$value);
-        }
+        $role->syncPermissions($request->ability);
+
+
         return redirect()->route('roles.index');
     }
 
@@ -43,10 +44,10 @@ class RolesController extends Controller
 
         $role->permissions()->detach();
 
+        Log::info($request);
+
         if ($request['ability']) {
-            foreach ($request['ability'] as $value) {
-                $role->allowTo((int)$value);
-            }
+            $role->syncPermissions($request['ability']);
         }
 
         return redirect()->route('roles.index');
@@ -54,7 +55,7 @@ class RolesController extends Controller
 
     public function destroy(Role $role)
     {
-        $role->deleteRole();
+        $role->delete();
         return redirect()->route('roles.index');
     }
 }
