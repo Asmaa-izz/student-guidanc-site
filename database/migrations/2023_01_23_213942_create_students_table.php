@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('guardian_id')->constrained('guardians');
+            $table->foreignId('guardian_id')->constrained('guardians')->onDelete('cascade');
             $table->string('name');
             $table->string('number');
             $table->string('class');

@@ -9,11 +9,11 @@ return new class extends Migration {
     {
         Schema::create('follow_up_records', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_id')->constrained('students');
+            $table->foreignId('student_id')->constrained('students')->onDelete('cascade');
             $table->string('status');
 
             $table->string('status_source');
-            $table->foreignId('source_id')->constrained('users');
+            $table->foreignId('source_id')->constrained('users')->onDelete('cascade');
 
             $table->text('description_situation')->nullable();
             $table->text('handle_situation')->nullable();

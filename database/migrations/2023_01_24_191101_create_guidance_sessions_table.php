@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('guidance_sessions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_id')->constrained('students');
+            $table->foreignId('student_id')->constrained('students')->onDelete('cascade');
             $table->string('type');
             $table->text('place')->nullable();
             $table->text('description')->nullable();

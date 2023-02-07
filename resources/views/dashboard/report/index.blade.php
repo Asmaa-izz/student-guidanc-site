@@ -15,13 +15,6 @@
     <title>تقرير</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <style>
-        @font-face {
-            font-family: 'Cairo';
-            font-style: normal;
-            font-weight: normal;
-            src: url('https://fonts.googleapis.com/css2?family=Cairo&display=swap') format('truetype');
-        }
-
         body {
             font-family: Cairo, DejaVu Sans, sans-serif;
             direction: rtl;
@@ -31,16 +24,20 @@
         .list-group-item {
             border: none;
         }
+        .list-group-item {
+           padding-top: 0;
+           padding-bottom: 0;
+        }
     </style>
 </head>
 <body>
 <div class="m-5">
     <div class="container-fluid">
-        <div class="row mb-3">
+        <div class="row ">
             <div class="col-md-12">
-                <div class="card">
+                <div class="card border-bottom">
                     <div class="card-body">
-                        <h3 class="card-title m-3"><strong> تقرير الطالب : {{ $student->name }}</strong></h3>
+                        <h3 class="card-title"><strong> تقرير الطالب : {{ $student->name }}</strong></h3>
                         <div class="row">
                             <div class="col-md-4">
                                 <ul class="list-group list-group-flush">
@@ -91,18 +88,18 @@
             </div>
         </div>
 
-        <div class="row mb-3">
+        <div class="row ">
             <div class="col-md-12">
-                <div class="card">
+                <div class="card border-bottom">
                     <div class="card-body">
-                        <h3 class="card-title m-3"><strong>سجل متابعة زيارات أولياء الأمور
+                        <h3 class="card-title"><strong>سجل متابعة زيارات أولياء الأمور
                                 [{{ $visitsRecord->count() }}]
                                 زيارة</strong></h3>
                         <div class="row">
                             <div class="col-md-12">
                                 @foreach($visitsRecord as $record)
-                                    <ul class="list-group list-group-flush mb-3">
-                                        <li class="list-group-item">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item  @if(!$loop->first) pt-3 @endif">
                                             <strong>اسم ولي الأمر :</strong> <span>{{ $record->guardian_name }}</span>
                                         </li>
                                         <li class="list-group-item">
@@ -116,7 +113,7 @@
                                             <strong>التاريخ :</strong>
                                             <span>{{ \Carbon\Carbon::parse($record->created_at)->format('d/m/Y') }}</span>
                                         </li>
-                                        <li class="list-group-item @if(!$loop->last) border-bottom @endif">
+                                        <li class="list-group-item @if(!$loop->last) border-bottom pb-2 @endif">
                                             <strong>ملاحظات :</strong> <span>{{ $record->notes }}</span>
                                         </li>
                                     </ul>
@@ -129,18 +126,18 @@
             </div>
         </div>
 
-        <div class="row mb-3">
+        <div class="row ">
             <div class="col-md-12">
-                <div class="card">
+                <div class="card border-bottom">
                     <div class="card-body">
-                        <h3 class="card-title m-3"><strong>سجل متابعة المواقف اليومية
+                        <h3 class="card-title"><strong>سجل متابعة المواقف اليومية
                                 [{{ $followUpRecord->count() }}]
                                 مواقف</strong></h3>
                         <div class="row">
                             <div class="col-md-12">
                                 @foreach($followUpRecord as $record)
-                                    <ul class="list-group list-group-flush mb-3">
-                                        <li class="list-group-item">
+                                    <ul class="list-group list-group-flush ">
+                                        <li class="list-group-item @if(!$loop->first) pt-3 @endif">
                                             <strong>الصف :</strong> <span>{{ $student->class }}</span>
                                         </li>
                                         <li class="list-group-item">
@@ -164,7 +161,7 @@
                                             <strong>معالجة الموقف :</strong>
                                             <span>{{ $record->handle_situation }}</span>
                                         </li>
-                                        <li class="list-group-item @if(!$loop->last) border-bottom @endif">
+                                        <li class="list-group-item @if(!$loop->last) border-bottom pb-2 @endif">
                                             <strong>الرصد في نون :</strong>
                                             <span>{{ $record->show_in_noun ? 'نعم' : 'لا' }}</span>
                                         </li>
@@ -178,25 +175,25 @@
             </div>
         </div>
 
-        <div class="row mb-3">
+        <div class="row ">
             <div class="col-md-12">
-                <div class="card">
+                <div class="card border-bottom">
                     <div class="card-body">
-                        <h3 class="card-title m-3"><strong>الجلسات التأخر الدراسي
+                        <h3 class="card-title"><strong>الجلسات التأخر الدراسي
                                 [{{ $guidanceSession_lag->count() }}]
                                 جلسة</strong></h3>
                         <div class="row">
                             <div class="col-md-12">
                                 @foreach($guidanceSession_lag as $session)
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">
+                                        <li class="list-group-item @if(!$loop->first) pt-3 @endif">
                                             <strong>المكان :</strong> <span>{{ $session->place }}</span>
                                         </li>
                                         <li class="list-group-item">
                                             <strong>الوقت :</strong>
                                             <span>{{ \Carbon\Carbon::parse($session->time)->format('d/m/Y') }}</span>
                                         </li>
-                                        <li class="list-group-item">
+                                        <li class="list-group-item  @if(!$loop->last) border-bottom pb-2 @endif">
                                             <strong>الوصف :</strong> <span>{{ $session->description }}</span>
                                         </li>
                                     </ul>
@@ -212,25 +209,25 @@
             </div>
         </div>
 
-        <div class="row mb-3">
+        <div class="row ">
             <div class="col-md-12">
-                <div class="card">
+                <div class="card border-bottom">
                     <div class="card-body">
-                        <h3 class="card-title m-3"><strong>الجلسات السلوك العدواني
+                        <h3 class="card-title"><strong>الجلسات السلوك العدواني
                                 [{{ $guidanceSession_behavior->count() }}]
                                 جلسة</strong></h3>
                         <div class="row">
                             <div class="col-md-12">
                                 @foreach($guidanceSession_behavior as $session)
-                                    <ul class="list-group list-group-flush mb-3">
-                                        <li class="list-group-item">
+                                    <ul class="list-group list-group-flush ">
+                                        <li class="list-group-item @if(!$loop->first) pt-3 @endif">
                                             <strong>المكان :</strong> <span>{{ $session->place }}</span>
                                         </li>
                                         <li class="list-group-item">
                                             <strong>الوقت :</strong>
                                             <span>{{ \Carbon\Carbon::parse($session->time)->format('d/m/Y') }}</span>
                                         </li>
-                                        <li class="list-group-item @if(!$loop->last) border-bottom @endif">
+                                        <li class="list-group-item @if(!$loop->last) border-bottom pb-2 @endif">
                                             <strong>الوصف :</strong> <span>{{ $session->description }}</span>
                                         </li>
                                     </ul>
@@ -247,10 +244,14 @@
     </div>
 </div>
 
+</body>
 
-<script type="text/javascript">
-    window.print();
+<script type="text/javascript" defer>
+    document.addEventListener("DOMContentLoaded", function(event) {
+        window.print();
+    });
+
 
 </script>
-</body>
+
 </html>
